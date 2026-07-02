@@ -1,0 +1,41 @@
+{
+  "name": "@phantasy/plugin-twilio",
+  "version": "0.1.0-beta",
+  "description": "Twilio SMS and MMS messaging integration plugin for Phantasy companions.",
+  "displayName": "Twilio SMS",
+  "main": "./dist/index.js",
+  "workspace": "business",
+  "extensionKind": "integration",
+  "category": "messaging",
+  "tags": [
+    "twilio",
+    "sms",
+    "messaging",
+    "phone"
+  ],
+  "permissions": [
+    "internet"
+  ],
+  "dependencies": [],
+  "adminSurface": {
+    "tabId": "twilio",
+    "label": "Twilio SMS",
+    "workspace": "business",
+    "kind": "generic",
+    "keywords": [
+      "twilio",
+      "sms",
+      "messaging",
+      "phone"
+    ]
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  }
+}

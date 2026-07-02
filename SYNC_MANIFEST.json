@@ -1,0 +1,107 @@
+{
+  "slug": "plugin-twilio",
+  "packageName": "@phantasy/plugin-twilio",
+  "displayName": "Twilio SMS",
+  "description": "Twilio SMS and MMS messaging integration plugin for Phantasy companions.",
+  "workspace": "business",
+  "extensionKind": "integration",
+  "category": "messaging",
+  "tags": [
+    "twilio",
+    "sms",
+    "messaging",
+    "phone"
+  ],
+  "permissions": [
+    "internet"
+  ],
+  "dependencies": [],
+  "visibility": "public",
+  "repoUrl": "https://github.com/phantasy-bot/plugin-twilio",
+  "sourceOfTruth": "monorepo",
+  "sourceOwner": "monorepo",
+  "sourcePayload": "source-extract",
+  "syncMode": "source-extract",
+  "phase": "source-extracted",
+  "sourceExtract": {
+    "packageDependencies": {
+      "@chat-adapter/twilio": "^4.32.0"
+    },
+    "files": [
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/index.ts",
+        "targetPath": "src/index.ts"
+      },
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/twilio-plugin.ts",
+        "targetPath": "src/twilio-plugin.ts"
+      },
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/twilio-plugin-endpoints.ts",
+        "targetPath": "src/twilio-plugin-endpoints.ts"
+      },
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/twilio-integration.ts",
+        "targetPath": "src/twilio-integration.ts"
+      },
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/runtime/twilio-bot-service.ts",
+        "targetPath": "src/runtime/twilio-bot-service.ts"
+      },
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/runtime/twilio-thread-helpers.ts",
+        "targetPath": "src/runtime/twilio-thread-helpers.ts"
+      },
+      {
+        "sourcePath": "src/first-party-plugins/plugin-twilio/runtime/config-helpers.ts",
+        "targetPath": "src/runtime/config-helpers.ts"
+      }
+    ]
+  },
+  "repoExists": true,
+  "npmPublished": false,
+  "runtimeLoadMode": "git",
+  "monorepoPackageStatus": "removed",
+  "phantasy": {
+    "displayName": "Twilio SMS",
+    "category": "messaging",
+    "tags": [
+      "twilio",
+      "sms",
+      "messaging",
+      "phone"
+    ],
+    "workspace": "business",
+    "extensionKind": "integration",
+    "permissions": [
+      "internet"
+    ],
+    "pluginDependencies": [],
+    "platforms": [
+      "node"
+    ],
+    "productionReady": false,
+    "adminSurface": {
+      "tabId": "twilio",
+      "label": "Twilio SMS",
+      "workspace": "business",
+      "kind": "generic",
+      "keywords": [
+        "twilio",
+        "sms",
+        "messaging",
+        "phone"
+      ]
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "exportedAt": "2026-07-02T23:47:41.722Z"
+}
