@@ -99,7 +99,10 @@ export class TwilioIntegration {
 
       await kvService.set("integration:twilio", normalizedConfig);
 
-      const agent = (await kvService.get(AGENT_DEFAULTS.ID)) as Record<string, unknown> | null;
+      const agent = (await kvService.get(AGENT_DEFAULTS.ID)) as Record<
+        string,
+        unknown
+      > | null;
       if (agent) {
         const integrations = getNestedRecord(agent, "integrations");
         agent.integrations = {
@@ -116,14 +119,14 @@ export class TwilioIntegration {
     }
   }
 
-  async testConnection(
-    config: Pick<TwilioConfig, "accountSid" | "authToken">,
-  ): Promise<{
+  async testConnection(config: Pick<TwilioConfig, "accountSid" | "authToken">): Promise<{
     success: boolean;
     error?: string;
     accountFriendlyName?: string;
   }> {
-    const auth = Buffer.from(`${config.accountSid}:${config.authToken}`).toString("base64");
+    const auth = Buffer.from(`${config.accountSid}:${config.authToken}`).toString(
+      "base64",
+    );
 
     try {
       const response = await fetchWithTimeout(

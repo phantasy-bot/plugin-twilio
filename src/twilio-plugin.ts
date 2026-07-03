@@ -167,11 +167,7 @@ export class TwilioPlugin extends BasePlugin implements PlatformCapability {
       await this.botService.stop();
     }
 
-    this.botService = new TwilioBotService(
-      this.getRuntimeEnv(),
-      nextConfig,
-      webhookUrl,
-    );
+    this.botService = new TwilioBotService(this.getRuntimeEnv(), nextConfig, webhookUrl);
     await this.botService.start();
     this.lastActivity = new Date();
 
@@ -348,9 +344,7 @@ export class TwilioPlugin extends BasePlugin implements PlatformCapability {
     return this.createIntegration().resolveWebhookUrl(config);
   }
 
-  async testConnection(
-    config: Pick<TwilioConfig, "accountSid" | "authToken">,
-  ): Promise<{
+  async testConnection(config: Pick<TwilioConfig, "accountSid" | "authToken">): Promise<{
     success: boolean;
     error?: string;
     accountFriendlyName?: string;
@@ -393,7 +387,11 @@ export class TwilioPlugin extends BasePlugin implements PlatformCapability {
         snapshot.webhookUrl,
         stored?.webhookUrl,
       ),
-      userName: readOptionalString(overrides?.userName, snapshot.userName, stored?.userName),
+      userName: readOptionalString(
+        overrides?.userName,
+        snapshot.userName,
+        stored?.userName,
+      ),
       allowedPhoneNumbers: readStringArray(
         overrides?.allowedPhoneNumbers,
         snapshot.allowedPhoneNumbers,
@@ -407,7 +405,12 @@ export class TwilioPlugin extends BasePlugin implements PlatformCapability {
             : typeof stored?.enableAutoReply === "boolean"
               ? stored.enableAutoReply
               : true,
-      replyDelay: readNumber(overrides?.replyDelay, snapshot.replyDelay, stored?.replyDelay, 0),
+      replyDelay: readNumber(
+        overrides?.replyDelay,
+        snapshot.replyDelay,
+        stored?.replyDelay,
+        0,
+      ),
       autoStart: readBoolean(overrides?.autoStart, snapshot.autoStart, stored?.autoStart),
       connected: stored?.connected,
     };

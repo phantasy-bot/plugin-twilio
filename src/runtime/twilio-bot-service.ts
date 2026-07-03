@@ -129,9 +129,7 @@ export class TwilioBotService {
     return this.bridge;
   }
 
-  private async normalizeInboundMessage(
-    event: PlatformConversationBridgeInboundEvent,
-  ) {
+  private async normalizeInboundMessage(event: PlatformConversationBridgeInboundEvent) {
     const authorId = normalizePhoneNumber(event.message.author.userId);
     const authorName =
       normalizePhoneNumber(event.message.author.userName) ||

@@ -54,10 +54,7 @@ export async function handleTwilioPluginEndpoint(
     return jsonResponse(result, result.success ? 200 : 400);
   }
 
-  if (
-    (path === "/test" || path === "/test-connection") &&
-    request.method === "POST"
-  ) {
+  if ((path === "/test" || path === "/test-connection") && request.method === "POST") {
     const body = await request.json().catch(() => ({}));
     const runtimeConfig = await plugin.buildRuntimeConfig(
       (body || {}) as Partial<TwilioConfig>,
