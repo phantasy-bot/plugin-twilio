@@ -58,7 +58,7 @@ function normalizeTwilioConfig(config: Partial<TwilioConfig>): TwilioConfig {
   };
 }
 
-function getTwilioIntegrationConfig(agent: unknown): Partial<TwilioConfig> | undefined {
+function getTwilioIntegrationConfig(agent: unknown): TwilioConfig | undefined {
   const integrations = getNestedRecord(agent, "integrations");
   const twilio = getNestedRecord(integrations, "twilio");
   if (Object.keys(twilio).length === 0) {
@@ -79,7 +79,7 @@ export class TwilioIntegration {
           ? normalizeTwilioConfig(storedConfig as Partial<TwilioConfig>)
           : getTwilioIntegrationConfig(await kvService.get(AGENT_DEFAULTS.ID));
 
-      if (!config.accountSid || !config.authToken) {
+      if (!config || !config.accountSid || !config.authToken) {
         return null;
       }
 
@@ -135,8 +135,8 @@ export class TwilioIntegration {
           headers: {
             Authorization: `Basic ${auth}`,
           },
+          timeout: 10_000,
         },
-        10_000,
       );
 
       if (!response.ok) {

@@ -5,6 +5,7 @@ import {
   type PlatformConversationBridgeInboundEvent,
   type ServerEnv,
 } from "@phantasy/agent/plugin-runtime";
+import type { Adapter } from "chat";
 
 import type { TwilioConfig } from "../twilio-integration";
 import {
@@ -121,7 +122,7 @@ export class TwilioBotService {
           messagingServiceSid: this.config.messagingServiceSid,
           webhookUrl: this.webhookUrl,
           userName: this.config.userName || "phantasy-twilio",
-        }) as never;
+        }) as Adapter;
       },
       normalizeInboundMessage: (event) => this.normalizeInboundMessage(event),
     });
@@ -156,7 +157,10 @@ export class TwilioBotService {
       return null;
     }
 
-    const decoded = event.adapter.decodeThreadId(event.thread.id);
+    const decoded = event.adapter.decodeThreadId(event.thread.id) as {
+      sender: string;
+      recipient: string;
+    };
     const senderPhone = normalizePhoneNumber(decoded.sender);
     const recipientPhone = normalizePhoneNumber(decoded.recipient) || authorId;
 

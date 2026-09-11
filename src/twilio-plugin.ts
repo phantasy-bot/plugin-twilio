@@ -9,6 +9,7 @@ import {
   getPluginRuntimeEnv,
   type ServerEnv,
 } from "@phantasy/agent/plugin-runtime";
+type AgentConfig = Parameters<BasePlugin["onInit"]>[0];
 
 import { handleTwilioPluginEndpoint } from "./twilio-plugin-endpoints";
 import { TwilioIntegration, type TwilioConfig } from "./twilio-integration";
@@ -112,7 +113,7 @@ export class TwilioPlugin extends BasePlugin implements PlatformCapability {
   }
 
   override async onInit(
-    _agentConfig: Record<string, unknown>,
+    _agentConfig: AgentConfig,
     config?: TwilioPluginConfig,
   ): Promise<void> {
     await super.onInit(_agentConfig, config);
